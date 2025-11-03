@@ -1,0 +1,25 @@
+# Acción;Parámetros
+# Posibles acciones: INSERTAR; BUSCAR; ACTUALIZAR; ELIMINAR
+# Valores válidos para booleanos: true/false, 1/0, si/sí/no, yes/y
+
+# Construcción adicional (se ejecuta DESPUÉS de los elementos iniciales)
+INSERTAR;Notas.txt;false
+INSERTAR;Docs;true
+
+# Búsquedas
+BUSCAR;Documentacion
+BUSCAR;Api
+BUSCAR;Tests
+BUSCAR;Client
+BUSCAR;NoExisto
+BUSCAR;ArchivoPerdido
+
+# Actualizaciones (Eliminar + Insertar)
+ACTUALIZAR;Readme.txt;LEEME.txt;false
+ACTUALIZAR;Documentacion;Documentation;true
+ACTUALIZAR;Proyectos;MainProject;true
+
+# Eliminaciones
+ELIMINAR;App.config
+ELIMINAR;Api
+ELIMINAR;MainProject

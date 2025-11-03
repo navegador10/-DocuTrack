@@ -1,0 +1,15 @@
+﻿# Nombre;EsCarpeta
+Proyectos;true
+Documentacion;true
+Src;true
+Tests;true
+Readme.txt;false
+Program.cs;false
+Api;true
+Client;true
+Models;true
+Services;true
+UnitTests;true
+IntegrationTests;true
+Design;true
+App.config;false
