@@ -1,5 +1,7 @@
 # DocuTrack
 
+![.NET Build](https://github.com/navegador10/-DocuTrack/actions/workflows/dotnet.yml/badge.svg?branch=main)
+
 ## Integrantes
 
 - MARIA CAMILA SAENZ VILLADA
