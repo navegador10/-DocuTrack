@@ -1,0 +1,20 @@
+# .NET / Visual Studio ignore
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.log
+TestResult*/
+*.cache
+*.ide/
+# OS
+.DS_Store
+Thumbs.db
+# Rider/JetBrains
+.idea/
+*.iml
+# VS Code
+.vscode/
