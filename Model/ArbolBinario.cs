@@ -210,6 +210,21 @@ namespace DocuTrack.Model
             InordenRec(n.Derecho, res);
         }
 
+        // Recorrido en inorden descendente: derecho, nodo, izquierdo (orden alfabético descendente)
+        public IEnumerable<string> InordenDesc()
+        {
+            var res = new List<string>();
+            InordenDescRec(Raiz, res);
+            return res;
+        }
+        private void InordenDescRec(Nodo? n, List<string> res)
+        {
+            if (n == null) return;
+            InordenDescRec(n.Derecho, res);
+            res.Add(n.Nombre);
+            InordenDescRec(n.Izquierdo, res);
+        }
+
         // Recorrido en postorden: izquierdo, derecho, nodo
         public IEnumerable<string> Postorden()
         {
@@ -251,6 +266,17 @@ namespace DocuTrack.Model
         {
             if (n == null) return 0;
             return 1 + Math.Max(AlturaRec(n.Izquierdo), AlturaRec(n.Derecho));
+        }
+
+        // Conteo de nodos del árbol
+        public int ContarNodos()
+        {
+            return ContarRec(Raiz);
+        }
+        private int ContarRec(Nodo? n)
+        {
+            if (n == null) return 0;
+            return 1 + ContarRec(n.Izquierdo) + ContarRec(n.Derecho);
         }
     }
 }
