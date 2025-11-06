@@ -19,6 +19,7 @@
 ## Descripcion
 
 Sistema de gestion de documentos basado en Arbol Binario de Busqueda (BST) para la empresa DocuTrack S.A.
+Responsable del Model y de la arquitectura BST: MARIA CAMILA SAENZ VILLADA.
 
 ## Requisitos para Ejecutar
 

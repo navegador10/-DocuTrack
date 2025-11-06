@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- docs: aclaración de responsabilidad del Model/BST (Camila)
+
 ## v1.0.0 - 2025-11-03
 
 - Arquitectura MVC completa (Model, View, Controller).
