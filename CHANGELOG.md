@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## v1.0.1 - 2025-11-05
 
 - docs: aclaración de responsabilidad del Model/BST (Camila)
+- feat(model): agregar InordenDesc y ContarNodos al BST
 
 ## v1.0.0 - 2025-11-03
 
