@@ -7,7 +7,12 @@ namespace DocuTrack.View
     {
         public void MostrarEncabezado(string titulo)
         {
-            Console.WriteLine($"\n=== {titulo} ===\n");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"=== {titulo} ===");
+            Console.ResetColor();
+            ImprimirRegla();
+            Console.WriteLine();
         }
 
         public void MostrarMensaje(string mensaje)
@@ -17,23 +22,63 @@ namespace DocuTrack.View
 
         public void MostrarResultadoInsercion(string nombre, bool insertado, int comparaciones, string motivo)
         {
-            var estado = insertado ? "OK" : ($"RECHAZADO ({motivo})");
-            Console.WriteLine($"• Insertar '{nombre}': {estado} (comparaciones: {comparaciones})");
+            Console.Write($"• Insertar '{nombre}': ");
+            if (insertado)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("OK");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"RECHAZADO ({motivo})");
+            }
+            Console.ResetColor();
+            Console.WriteLine($" (comparaciones: {comparaciones})");
         }
 
         public void MostrarResultadoBusqueda(string nombre, bool encontrado, int comparaciones)
         {
-            Console.WriteLine($"• Buscar '{nombre}': {(encontrado ? "ENCONTRADO" : "NO ENCONTRADO")} (comparaciones: {comparaciones})");
+            Console.Write($"• Buscar '{nombre}': ");
+            if (encontrado)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("ENCONTRADO");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("NO ENCONTRADO");
+            }
+            Console.ResetColor();
+            Console.WriteLine($" (comparaciones: {comparaciones})");
         }
 
         public void MostrarResultadoEliminacion(string nombre, bool eliminado, string caso)
         {
-            Console.WriteLine($"• Eliminar '{nombre}': {(eliminado ? "OK" : "NO ENCONTRADO")} {caso}");
+            Console.Write($"• Eliminar '{nombre}': ");
+            if (eliminado)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("OK");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("NO ENCONTRADO");
+            }
+            Console.ResetColor();
+            if (!string.IsNullOrWhiteSpace(caso)) Console.Write($" {caso}");
+            Console.WriteLine();
         }
 
         public void MostrarRecorrido(System.Collections.Generic.IEnumerable<string> recorrido, string nombre)
         {
-            Console.WriteLine($"\n{nombre}: {string.Join(", ", recorrido)}");
+            Console.Write($"\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"{nombre}: ");
+            Console.ResetColor();
+            Console.WriteLine(string.Join(", ", recorrido));
         }
 
         public void MostrarArbol(Nodo? raiz)
@@ -52,7 +97,10 @@ namespace DocuTrack.View
                 if (lvl != current)
                 {
                     current = lvl;
-                    Console.Write($"\nNivel {lvl}: ");
+                    Console.Write("\n");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($"Nivel {lvl}: ");
+                    Console.ResetColor();
                 }
                 Console.Write($"[{n.Nombre}] ");
                 if (n.Izquierdo != null) q.Enqueue((n.Izquierdo, lvl+1));
@@ -63,7 +111,13 @@ namespace DocuTrack.View
 
         public void MostrarAltura(int altura)
         {
-            Console.WriteLine($"\nAltura: {altura}");
+            Console.Write("\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Altura: ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($"{altura}");
+            Console.ResetColor();
         }
 
         public void MostrarArbolAscii(Nodo? raiz)
@@ -92,6 +146,15 @@ namespace DocuTrack.View
                 var nuevoPrefijo = prefix + (esUltimo ? "    " : "│   ");
                 ImprimirNodoAscii(hijos[i], nuevoPrefijo, ultimoHijo);
             }
+        }
+
+        private void ImprimirRegla()
+        {
+            int ancho;
+            try { ancho = Console.WindowWidth; if (ancho <= 0) ancho = 50; }
+            catch { ancho = 50; }
+            var largo = Math.Min(100, Math.Max(20, ancho - 1));
+            Console.WriteLine(new string('─', largo));
         }
     }
 }
