@@ -278,5 +278,55 @@ namespace DocuTrack.Model
             if (n == null) return 0;
             return 1 + ContarRec(n.Izquierdo) + ContarRec(n.Derecho);
         }
+
+        // Conteo de carpetas (EsCarpeta == true)
+        public int ContarCarpetas()
+        {
+            return ContarCarpetasRec(Raiz);
+        }
+        private int ContarCarpetasRec(Nodo? n)
+        {
+            if (n == null) return 0;
+            int actual = n.EsCarpeta ? 1 : 0;
+            return actual + ContarCarpetasRec(n.Izquierdo) + ContarCarpetasRec(n.Derecho);
+        }
+
+        // Conteo de archivos (EsCarpeta == false)
+        public int ContarArchivos()
+        {
+            return ContarArchivosRec(Raiz);
+        }
+        private int ContarArchivosRec(Nodo? n)
+        {
+            if (n == null) return 0;
+            int actual = n.EsCarpeta ? 0 : 1;
+            return actual + ContarArchivosRec(n.Izquierdo) + ContarArchivosRec(n.Derecho);
+        }
+
+        // Ancho máximo del árbol (máximo número de nodos en un mismo nivel)
+        public int AnchoMaximo()
+        {
+            if (Raiz == null) return 0;
+            var q = new Queue<(Nodo node, int level)>();
+            q.Enqueue((Raiz, 0));
+            int max = 0;
+            int currentLevel = -1;
+            int count = 0;
+            while (q.Count > 0)
+            {
+                var (n, lvl) = q.Dequeue();
+                if (lvl != currentLevel)
+                {
+                    if (currentLevel != -1 && count > max) max = count;
+                    currentLevel = lvl;
+                    count = 0;
+                }
+                count++;
+                if (n.Izquierdo != null) q.Enqueue((n.Izquierdo, lvl + 1));
+                if (n.Derecho != null) q.Enqueue((n.Derecho, lvl + 1));
+            }
+            if (count > max) max = count;
+            return max;
+        }
     }
 }
