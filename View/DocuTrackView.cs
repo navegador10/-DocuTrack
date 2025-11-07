@@ -102,7 +102,7 @@ namespace DocuTrack.View
                     Console.Write($"Nivel {lvl}: ");
                     Console.ResetColor();
                 }
-                Console.Write($"[{n.Nombre}] ");
+                Console.Write($"[{Icono(n)} {n.Nombre}] ");
                 if (n.Izquierdo != null) q.Enqueue((n.Izquierdo, lvl+1));
                 if (n.Derecho != null) q.Enqueue((n.Derecho, lvl+1));
             }
@@ -134,7 +134,10 @@ namespace DocuTrack.View
         private void ImprimirNodoAscii(Nodo nodo, string prefix, bool esUltimo)
         {
             var conector = esUltimo ? "└── " : "├── ";
-            Console.WriteLine($"{prefix}{conector}{nodo.Nombre}");
+            Console.Write(prefix + conector);
+            Console.ForegroundColor = nodo.EsCarpeta ? ConsoleColor.Blue : ConsoleColor.Gray;
+            Console.WriteLine($"{Icono(nodo)} {nodo.Nombre}");
+            Console.ResetColor();
 
             var hijos = new System.Collections.Generic.List<Nodo>();
             if (nodo.Izquierdo != null) hijos.Add(nodo.Izquierdo);
@@ -155,6 +158,11 @@ namespace DocuTrack.View
             catch { ancho = 50; }
             var largo = Math.Min(100, Math.Max(20, ancho - 1));
             Console.WriteLine(new string('─', largo));
+        }
+
+        private static string Icono(Nodo n)
+        {
+            return n.EsCarpeta ? "📁" : "📄";
         }
     }
 }
