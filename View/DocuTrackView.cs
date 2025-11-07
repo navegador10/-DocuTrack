@@ -63,7 +63,7 @@ namespace DocuTrack.View
 
         public void MostrarAltura(int altura)
         {
-            Console.WriteLine($"Altura: {altura}");
+            Console.WriteLine($"\nAltura: {altura}");
         }
 
         public void MostrarArbolAscii(Nodo? raiz)
